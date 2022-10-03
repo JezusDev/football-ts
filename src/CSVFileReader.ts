@@ -2,10 +2,10 @@ import { readFileSync } from "fs";
 import { dateStringToDate } from "./utis";
 import { MatchResult } from "./MatchResults";
 
-type Match = [Date, string, string, number, number, MatchResult, string];
+type MatchData = [Date, string, string, number, number, MatchResult, string];
 
 export class CSVFileReader {
-  data: string[][] = [];
+  data: MatchData[] = [];
   filename: string;
 
   constructor(filename: string) {
@@ -20,7 +20,7 @@ export class CSVFileReader {
       .map((item) => {
         return item.split(",");
       })
-      .map((item: string[]): any => {
+      .map((item: string[]): MatchData => {
         return [
           dateStringToDate(item[0], "/"),
           item[1],
